@@ -2,11 +2,10 @@
 import CerrarBtn from "../img/cerrar.svg";
 
 
-const Modal = ({ setModal,animarModal,setaAnimarModal }) => {
+const Modal = ({ setModal,animarModal,setAnimarModal }) => {
   const ocultarModal = () => {
 
-    setaAnimarModal(false)
-
+ 
     setTimeout(()=>{
         setModal(false)
     },500)
