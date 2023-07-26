@@ -5,7 +5,8 @@ import CerrarBtn from "../img/cerrar.svg";
 const Modal = ({ setModal, animarModal, setAnimarModal }) => {
 
   const [nombre, setNombre] = useState("");
-
+  const [cantidad, setCantidad] = useState(0); 
+  const [categoria, setCategoria] = useState("");
 
   const ocultarModal = () => {
     setModal(false);
@@ -37,14 +38,16 @@ const Modal = ({ setModal, animarModal, setAnimarModal }) => {
           <input
             id="cantidad"
             type="number"
+            value={cantidad}
+            onChange={(e) => setCantidad(Number(e.target.value))}
             placeholder="añade la cantidad del Gasto:eje 300"
           />
         </div>
         <div className="campo">
-          <label htmlFor="">Categoria</label>
-          <select name="" id="categoria">
-            <option value="">-- Seleccione --</option>
-            <option value="ahorro">Ahorro</option>
+          <label htmlFor="" >Categoria</label>
+          <select name="" id="categoria"value={categoria} onChange={(e) =>setCategoria(e.target.value)} >
+            <option  value="">-- Seleccione --</option>
+            <option value="ahorro" value={categoria}>Ahorro</option>
             <option value="comida">Comida</option>
             <option value="casa">Casa</option>
             <option value="gastos">Gastos Varios</option>
