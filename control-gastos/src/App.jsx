@@ -39,6 +39,7 @@ setAnimarModal(true)
         {modal && <Modal
         setModal={setModal}
         animarModal={animarModal}
+        setAnimarModal={setAnimarModal}
         />}
       </div>
     </>
