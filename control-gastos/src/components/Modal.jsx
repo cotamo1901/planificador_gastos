@@ -16,12 +16,17 @@ const Modal = ({ setModal, animarModal, setAnimarModal }) => {
     }, 500);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("enviando");
+  }
+
   return (
     <div className="modal">
       <div className="cerrar-modal">
         <img src={CerrarBtn} alt="cerrarmodal" onClick={ocultarModal} />
       </div>
-      <form action="" className={`formulario ${animarModal ? "animar" : ""}`}>
+      <form  onSubmit={handleSubmit} action="" className={`formulario ${animarModal ? "animar" : ""}`}>
         <legend>Nuevo Gasto</legend>
         <div className="campo">
           <label htmlFor="">Nombre Gasto</label>
