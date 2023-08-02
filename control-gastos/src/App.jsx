@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import IconoNuevoGasto from "./img/nuevo-gasto.svg";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
@@ -11,7 +11,13 @@ function App() {
   const [modal, setModal] = useState(false);
   const [animarModal, setAnimarModal] = useState(false);
   const [gastos, setGastos] = useState([]); // [{nombre,cantidad,categoria}
-const [gastoEditar, setGastoEditar] = useState({})
+  const [gastoEditar, setGastoEditar] = useState({});
+
+useEffect(()=>{
+if (Object.keys( gastoEditar).length>0) {
+  handeNuevoGasto()
+}
+},[gastoEditar])
 
   const handeNuevoGasto = () => {
     setModal(true);
@@ -23,7 +29,7 @@ const [gastoEditar, setGastoEditar] = useState({})
 
   const guardarGasto = (gasto) => {
     gasto.id = generarId();
-    gasto.fecha =Date.now();
+    gasto.fecha = Date.now();
     setGastos([...gastos, gasto]);
 
     setModal(false);
@@ -34,9 +40,9 @@ const [gastoEditar, setGastoEditar] = useState({})
   };
   return (
     <>
-      <div className={modal ? 'fijar' : ""}>
+      <div className={modal ? "fijar" : ""}>
         <Header
-        gastos={gastos}
+          gastos={gastos}
           presupuesto={presupuesto}
           setPresupuesto={setPresupuesto}
           isValidPresupuesto={isValidPresupuesto}
@@ -44,18 +50,16 @@ const [gastoEditar, setGastoEditar] = useState({})
         />
         {isValidPresupuesto && (
           <>
-          <main>
-
-          <ListadoGastos gastos={gastos} setGastoEditar={setGastoEditar}
-          />
-          </main>
-          <div className="nuevo-gasto">
-            <img
-              src={IconoNuevoGasto}
-              alt="nuevo gasto"
-              onClick={handeNuevoGasto}
-            />
-          </div>
+            <main>
+              <ListadoGastos gastos={gastos} setGastoEditar={setGastoEditar} />
+            </main>
+            <div className="nuevo-gasto">
+              <img
+                src={IconoNuevoGasto}
+                alt="nuevo gasto"
+                onClick={handeNuevoGasto}
+              />
+            </div>
           </>
         )}
 
@@ -65,6 +69,7 @@ const [gastoEditar, setGastoEditar] = useState({})
             animarModal={animarModal}
             setAnimarModal={setAnimarModal}
             guardarGasto={guardarGasto}
+            gastoEditar={gastoEditar}
           />
         )}
       </div>
