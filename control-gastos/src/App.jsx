@@ -15,12 +15,18 @@ function App() {
 
 useEffect(()=>{
 if (Object.keys( gastoEditar).length>0) {
-  handeNuevoGasto()
-}
+  setModal(true);
+ 
+
+  setTimeout(() => {
+    setAnimarModal(true);
+  }, 500);
+};
 },[gastoEditar])
 
   const handeNuevoGasto = () => {
     setModal(true);
+    setGastoEditar
 
     setTimeout(() => {
       setAnimarModal(true);
